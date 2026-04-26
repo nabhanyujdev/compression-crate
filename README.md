@@ -1,10 +1,10 @@
-# Signal Press
+# COMPRESSION CRATE
 
-Signal Press is a full-stack file compression and integrity project built around a native C++ Huffman engine, a Flask API, and a drag-and-drop browser interface. The project is designed to be both practical and demonstrative: it compresses and restores files, verifies integrity with SHA-256, and exposes the algorithmic pipeline in a way that is easy to explain in a portfolio, interview, or systems project discussion.
+Compression Crate is a full-stack file compression and integrity project built around a native C++ Huffman engine, a Flask API, and a drag-and-drop browser interface. The project is designed to be both practical and demonstrative: it compresses and restores files, verifies integrity with SHA-256, and exposes the algorithmic pipeline in a way that is easy to explain in a portfolio, interview, or systems project discussion.
 
 ## Project Overview
 
-Signal Press takes a file, analyzes byte frequencies, builds a Huffman tree, and writes the encoded result into a custom `.huf` archive. That archive also stores the metadata needed to reconstruct the file later, including a SHA-256 checksum of the original payload. When a user uploads the archive for decompression, the native engine restores the original file and validates that the resulting bytes match the embedded checksum.
+Compression Crate takes a file, analyzes byte frequencies, builds a Huffman tree, and writes the encoded result into a custom `.huf` archive. That archive also stores the metadata needed to reconstruct the file later, including a SHA-256 checksum of the original payload. When a user uploads the archive for decompression, the native engine restores the original file and validates that the resulting bytes match the embedded checksum.
 
 The project intentionally combines three layers:
 
@@ -12,7 +12,11 @@ The project intentionally combines three layers:
 - A Python backend in Flask that accepts uploads and orchestrates the native binary
 - A handcrafted frontend that makes the workflow feel polished and presentable instead of purely utilitarian
 
-This makes the project useful as both an engineering artifact and a strong CV or portfolio piece, since it demonstrates data structures, file I/O, serialization, API design, and frontend UX in one build.
+## Screenshots:
+<img width="1470" height="831" alt="Screenshot 2026-04-26 at 4 00 09 PM" src="https://github.com/user-attachments/assets/2b35555a-c57a-41aa-adbb-b000b5df26aa" />
+<img width="1470" height="833" alt="Screenshot 2026-04-26 at 4 00 20 PM" src="https://github.com/user-attachments/assets/22b199a5-fccc-48f4-9fce-8678ec2b7516" />
+<img width="1470" height="414" alt="Screenshot 2026-04-26 at 4 00 31 PM" src="https://github.com/user-attachments/assets/5e14485c-498a-49bd-a79e-dd54eccdfd52" />
+
 
 ## Core Features
 
@@ -28,8 +32,6 @@ This makes the project useful as both an engineering artifact and a strong CV or
 The application is split into three cooperating layers.
 
 ### 1. Native Compression Engine
-
-File: [src/compressor.cpp](/Users/nabhanyu.archive/Documents/Codex/2026-04-26/files-mentioned-by-the-user-screenshot-2/src/compressor.cpp)
 
 Responsibilities:
 
@@ -52,8 +54,6 @@ Each mode returns structured JSON to stdout so the backend can display meaningfu
 
 ### 2. Flask API Layer
 
-File: [app.py](/Users/nabhanyu.archive/Documents/Codex/2026-04-26/files-mentioned-by-the-user-screenshot-2/app.py)
-
 Responsibilities:
 
 - Serve the frontend
@@ -67,12 +67,6 @@ Responsibilities:
 This layer keeps the native implementation isolated while still making the project easy to demo in a browser.
 
 ### 3. Frontend Experience
-
-Files:
-
-- [templates/index.html](/Users/nabhanyu.archive/Documents/Codex/2026-04-26/files-mentioned-by-the-user-screenshot-2/templates/index.html)
-- [static/css/styles.css](/Users/nabhanyu.archive/Documents/Codex/2026-04-26/files-mentioned-by-the-user-screenshot-2/static/css/styles.css)
-- [static/js/app.js](/Users/nabhanyu.archive/Documents/Codex/2026-04-26/files-mentioned-by-the-user-screenshot-2/static/js/app.js)
 
 Responsibilities:
 
@@ -104,9 +98,6 @@ The visual direction is intentionally editorial and tactile rather than a defaul
 - `make`
 
 ### Python Dependencies
-
-Runtime Python dependencies are listed in [requirements.txt](/Users/nabhanyu.archive/Documents/Codex/2026-04-26/files-mentioned-by-the-user-screenshot-2/requirements.txt).
-
 Current direct dependency:
 
 - `Flask`
@@ -125,6 +116,7 @@ None. The frontend uses plain HTML, CSS, and JavaScript.
 ### Native Dependencies
 
 None beyond the C++ standard library. The SHA-256 implementation is included directly in the C++ source rather than pulled in from an external package.
+
 
 ## Local Setup
 
@@ -182,8 +174,6 @@ Each command prints structured JSON to stdout.
 ├── Makefile
 ├── README.md
 ├── requirements.txt
-├── bin/
-├── output/
 ├── src/
 │   └── compressor.cpp
 ├── static/
@@ -193,7 +183,6 @@ Each command prints structured JSON to stdout.
 │       └── app.js
 ├── templates/
 │   └── index.html
-└── uploads/
 ```
 
 ## Notes and Tradeoffs
@@ -201,31 +190,20 @@ Each command prints structured JSON to stdout.
 - Empty files are supported.
 - Some files compress poorly, especially small inputs or already dense binary formats.
 - For small files, archive metadata can outweigh compression gains.
-- The current archive format is designed for clarity and portability within this project, not for compatibility with standard archive tools.
-- The Flask app currently uses the development server, which is fine for demos but not ideal for production deployment.
 - The default upload limit is 64 MB.
 
 ## Future Improvement Scope
 
 - Add batch compression and decompression for multiple files
 - Add archive previews and richer inspect-mode metadata in the web UI
-- Support folder compression or multi-file bundle archives
-- Improve compression efficiency by reducing metadata overhead further
 - Add benchmark pages comparing compression behavior across file types
-- Add unit and integration tests for archive round-tripping and checksum validation
-- Add Docker support for easier cross-platform setup
-- Add production deployment support with Gunicorn or another WSGI server
 - Add background job handling for larger file uploads
-- Add optional archive encryption on top of integrity verification
 
-## Why This Project Stands Out
+## USP
 
-Signal Press is more than a CRUD-style upload demo. It combines:
+It's is more than a CRUD-style upload demo. It combines:
 
 - data structures and algorithms
 - low-level binary serialization
 - integrity verification
-- backend orchestration
 - file-processing UX
-
-That combination makes it a strong systems-focused portfolio project with a visible user interface and a meaningful technical core.
