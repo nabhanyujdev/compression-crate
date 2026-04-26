@@ -1,6 +1,6 @@
 # COMPRESSION CRATE
 
-Compression Crate is a full-stack file compression and integrity project built around a native C++ Huffman engine, a Flask API, and a drag-and-drop browser interface. The project is designed to be both practical and demonstrative: it compresses and restores files, verifies integrity with SHA-256, and exposes the algorithmic pipeline in a way that is easy to explain in a portfolio, interview, or systems project discussion.
+Compression Crate is a full-stack file compression and integrity project built around a native C++ Huffman engine, a Flask API, and a drag-and-drop browser interface. The project is designed to be both practical and demonstrative: it compresses and restores files, verifies integrity with SHA-256, and exposes the algorithmic pipeline.
 
 ## Project Overview
 
