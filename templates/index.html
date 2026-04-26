@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signal Press | File Compression & Integrity Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <main class="page-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">COMPRESSION CRATE<br />BY-NABHANYU JOSHI</p>
+          <h1>Compress, restore, and verify files with an archive format that shows its work.</h1>
+          <p class="lede">
+            A full-stack build with a native C++ Huffman engine, SHA-256 integrity checks, Flask orchestration,
+            and a drag-and-drop interface shaped more like an editorial control room than a standard dashboard.
+          </p>
+          <div class="hero-notes" aria-label="Project notes">
+            <div class="note-rule"></div>
+            <div class="note-columns">
+              <div>
+                <p class="note-label">Method</p>
+                <p class="note-copy">Huffman coding with native archive packing and byte-level reconstruction.</p>
+              </div>
+              <div>
+                <p class="note-label">Integrity</p>
+                <p class="note-copy">Each archive carries a SHA-256 fingerprint for restoration checks.</p>
+              </div>
+              <div>
+                <p class="note-label">Interface</p>
+                <p class="note-copy">Browser upload flow with result telemetry, ratio views, and downloads.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="hero-card-top">
+            <span class="status-dot"></span>
+            <p>Archive operations</p>
+          </div>
+          <div class="signal-grid">
+            <article>
+              <h2>Compress</h2>
+              <p>Generate a `.huf` archive with symbol frequencies and a checksum baked into the file.</p>
+            </article>
+            <article>
+              <h2>Restore</h2>
+              <p>Decompress archives and verify the restored file against the original SHA-256 digest.</p>
+            </article>
+            <article>
+              <h2>Inspect</h2>
+              <p>Surface ratios, dominant symbols, and integrity outcomes so the algorithm stays visible.</p>
+            </article>
+          </div>
+          <div class="archive-poem" aria-label="Creative archive note">
+            <div class="archive-poem-grid">
+              <span>bits</span>
+              <span>fold</span>
+              <span>proof</span>
+              <span>back</span>
+            </div>
+            <p>
+              A small archive is a strange little promise:
+              less mass, same memory.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="workspace">
+        <div class="workspace-header">
+          <div>
+            <p class="section-label">Workbench</p>
+            <h2>Drop a file into the press room.</h2>
+          </div>
+          <div class="mode-toggle" role="tablist" aria-label="Action switcher">
+            <button class="mode-btn active" type="button" data-mode="compress">Compress</button>
+            <button class="mode-btn" type="button" data-mode="decompress">Decompress</button>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <form id="upload-form" class="dropzone-panel">
+            <input id="action-input" type="hidden" name="action" value="compress" />
+            <label for="file-input" id="dropzone" class="dropzone">
+              <input id="file-input" name="file" type="file" />
+              <div class="dropzone-copy">
+                <p class="dropzone-kicker">Drop file here</p>
+                <h3 id="dropzone-title">Prepare a file for Huffman compression</h3>
+                <p id="dropzone-subtitle">
+                  Best for text-heavy or repetitive files, though any binary file will run through the engine.
+                </p>
+              </div>
+              <div class="dropzone-footer">
+                <span id="file-label">No file selected yet</span>
+                <span class="browse-chip">Browse</span>
+              </div>
+            </label>
+            <button id="submit-btn" class="primary-btn" type="submit">Run compression</button>
+          </form>
+
+          <section class="insight-panel">
+            <div class="insight-header">
+              <p class="section-label">TECHNICAL DEETS</p>
+              <h3>THINGS TO KNOW FOR TECH GEEKS. 🙂</h3>
+            </div>
+            <ul class="feature-list">
+              <li>Custom Huffman archive format with symbol frequency table</li>
+              <li>Original-file SHA-256 checksum embedded inside the archive</li>
+              <li>Flask API that shells out to the native binary and returns structured stats</li>
+              <li>Result board with before/after size, ratio, integrity, and download actions</li>
+            </ul>
+            <div class="quote-card">
+              <p>
+                “The goal here is not just to shrink bytes. It’s to make it look cool and sassy. 😉”
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="results-shell">
+        <div class="results-header">
+          <div>
+            <p class="section-label">Output</p>
+            <h2>Result board</h2>
+          </div>
+          <p id="status-pill" class="status-pill">Waiting for a file</p>
+        </div>
+        <div id="results" class="results-placeholder">
+          Upload a file to see compression ratios, checksum data, dominant symbols, and your download link.
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
